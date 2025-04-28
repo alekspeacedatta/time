@@ -55,11 +55,14 @@ app.get("/edit/:watchId", async (req, res) => {
     const watch = await Watch.findById(req.params.watchId);
     res.render('edit', { watch } );
 })
-app.post("/update/:watchId", upload.single('image'), async (req, res) => {
+app.post("/update/:watchId", upload.array('images', 5), async (req, res) => {
     const {name, brand, price} = req.body;
-    const imagePath = req.file ? "uploads/" + req.file.filename : null;
-
-    await Watch.findByIdAndUpdate(req.params.watchId, {name, brand, price, imagePath});
+    const files = req.files;
+    let imagePaths = [];
+    if(files && files.length > 0){
+        imagePaths = files.map(file => "uploads/" + file.filename);
+    }
+    await Watch.findByIdAndUpdate(req.params.watchId, {name, brand, price, imagePaths});
     res.redirect("/");
 })
 
