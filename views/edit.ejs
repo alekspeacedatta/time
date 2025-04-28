@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    
+    <form action="/update/<%= watch.id %>" method="POST" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="name" value="<%= watch.name %>" required>
+        <input type="text" name="brand" placeholder="brand" value="<%= watch.brand %>" required>
+        <input type="text" name="price" placeholder="price" value="<%= watch.price %>" required>
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Update</button>
+    </form>
+    
+</body>
+</html>

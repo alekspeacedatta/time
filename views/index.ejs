@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <%- include('blocks/header') -%>
+
+    <main>
+
+        <div class="products-container">
+            <div class="products-container-content">
+                <div class="products-heading">
+                    <h3>
+                        best of the year
+                    </h3>
+                    <div class="prev-next">
+                        <button class="prev">
+                            &#10094
+                        </button>
+                        <button class="next">
+                            &#10095
+                        </button>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider">
+                        <% watches.forEach(watch => { %>
+                            <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
+                                <div class="slide-content">
+                                    <section>
+                                        <img src="<%= watch.imagePath %>" alt="<%= watch.name %>">
+                                        <div class="slide-heading">
+                                            <span>
+                                                <%= watch.brand %>
+                                            </span>
+                                            <h3>
+                                                <%= watch.name %>
+                                            </h3>
+                                        </div>
+                                    </section>
+                                    <div class="slide-price">
+                                        <p>
+                                            <%= watch.price %> $
+                                        </p>
+                                        <button>
+                                            add to 
+                                        </button>
+                                        <a href="/edit/<%= watch._id %>">edit</a>
+                                    </div>     
+                                </div>
+                            </div>
+                       <% }); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <%- include('blocks/footer') -%>
+
+    <script src="js/slider.js"></script>
+</body>
+</html>
