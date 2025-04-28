@@ -27,11 +27,11 @@ main{
             z-index: 2;
         }
         .prev{
-            top: 510px;
+            top: 495px;
             right: 421px;
         }
         .next{
-            top: 510px;
+            top: 495px;
             left: 409px;
         }
         .thumbnails-slider-container{
