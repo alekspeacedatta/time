@@ -10,10 +10,15 @@
         <input type="text" name="name" placeholder="name" required>
         <input type="text" name="brand" placeholder="brand" required>
         <input type="text" name="price" placeholder="price" required>
-        <input type="file" name="image" accept="image/*" id="" required>
-        <button type="submit">
-            submit
-        </button>
+
+        <label for="">Main Image:</label>
+        <input type="file" name="mainImage" required>
+
+        <label for="">Other Images (3):</label>
+        <input type="file" name="images" multiple required>
+
+        <button type="submit"> submit </button>
     </form>
+
 </body>
 </html>

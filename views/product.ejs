@@ -12,31 +12,19 @@
     
         <main>
             <div class="product-images">
-                <img src="/<%= watch.imagePath %>" alt="<%= watch.name %>" class="main-image" id="mainImage">
+                <img src="/<%= watch.mainImage %>" alt="<%= watch.name %>" class="main-image" id="mainImage">
 
-                <button class="prev">
-                    &#10094
-                </button>
-                <button class="next">
-                    &#10095
-                </button>
-                <div class="thumbnails-slider">
-                    <div class="thumbnails-container">
-                        <!-- <img src="images/Carousel.png" class="main-img-thumbnail" alt="front-view">
-                        <img src="images/Carousel 2.png" alt="">
-                        <img src="images/Carousel 3.png" alt="">
-                        <img src="images/Carousel 4.png" alt="">
-                        <img src="images/Carousel 5.png" alt="">
-                        <img src="images/Carousel.png" class="main-img-thumbnail" alt="front-view">
-                        <img src="images/Carousel 2.png" alt="">
-                        <img src="images/Carousel 3.png" alt="">
-                        <img src="images/Carousel 4.png" alt="">
-                        <img src="images/Carousel 5.png" alt=""> -->
+                <button class="prev"> &#10094 </button>
+                <button class="next"> &#10095 </button>
+                
+                <div class="thumbnails-slider-container">
+                    <div class="thumbnails-slider">
+                        <% watch.images.forEach(image => { %>
+                            <img src="/<%= image %>" alt="Thumbnail" class="thumbnail">
+                        <%  }) %>
                     </div>
                 </div>
-                <a href="">
-                    view full size images
-                </a>
+                <a href=""> view full size images </a>
             </div>      
         <div class="product-discription">
             <section class="discription-heading">
@@ -140,5 +128,7 @@
     </main>
     <%- include('blocks/footer') -%>
     <script src="/js/accordion.js"></script>
+    <script src="/js/thumbnails.js"></script>
+    <script src="/js/thumbnails-slider.js"></script>
 </body>
 </html>

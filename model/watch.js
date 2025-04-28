@@ -4,7 +4,8 @@ const watchSchema = mongoose.Schema({
     name: String,
     brand: String,
     price: Number,
-    imagePath: []
+    mainImage: String,
+    images: [String]
 })
 
 module.exports = mongoose.model("watch", watchSchema);

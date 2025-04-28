@@ -8,12 +8,27 @@
 <body>
      
     
-    <form action="/update/<%= watch.id %>" method="POST" enctype="multipart/form-data">
+    <form action="/update/<%= watch._id %>" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="name" value="<%= watch.name %>" required>
         <input type="text" name="brand" placeholder="brand" value="<%= watch.brand %>" required>
-        <input type="text" name="price" placeholder="price" value="<%= watch.price %>" required>
-        <input type="file" name="images" accept="image/*" multiple>
-        <button type="submit">Update</button>
+        <input type="number" name="price" placeholder="price" value="<%= watch.price %>" required>
+
+        <p>Current Main Image:</p>
+        <img src="<%= watch.mainImage %>" width="150">
+
+
+        <p>Current Small Images: </p>
+        <% watch.images.forEach(img => { %>
+            <img src="/<%= img %>" width="100">
+        <%  }); %>
+
+        <p>Upload Main Image (optional): </p>
+        <input type="file" name="mainImage">
+        
+        <p>Upload New Small Images (optional): </p>
+        <input type="file" name="images" multiple>
+
+        <button type="submit"> Update </button>
     </form>
     
 </body>

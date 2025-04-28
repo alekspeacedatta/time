@@ -12,6 +12,8 @@ main{
         gap: 12px;
         .main-image{
             width: 452px;
+            height: 460px;
+            object-fit: cover;
         }
         button{
             background-color: transparent;
@@ -32,7 +34,7 @@ main{
             top: 510px;
             left: 409px;
         }
-        .thumbnails-slider{
+        .thumbnails-slider-container{
             display: flex;
             align-items: center;
             gap: 12px;
@@ -40,7 +42,7 @@ main{
             overflow: hidden;
             z-index: 1;
             width: 360px;
-            .thumbnails-container{
+            .thumbnails-slider{
                 width: max-content;
                 display: flex;
                 gap: 12px;

@@ -42,28 +42,51 @@ app.get("/", async (req, res) => {
 app.get("/add", (req, res) => {
     res.render('add');
 })
-app.post("/add-watch", upload.single('image'), async (req, res) => {
-    const { name, brand, price } = req.body;
-    const imagePath = req.file ? "uploads/" + req.file.filename : null;
-
-    const newWatch = new Watch({name, brand, price, imagePath});
-    await newWatch.save();
-    res.redirect('/');
+app.post("/add-watch", upload.fields([
+    {name: 'mainImage', maxCount: 1},
+    {name: 'images', maxCount: 6}
+]), async (req, res) => {
+    try {
+        const { name, brand, price } = req.body;
+        const mainImage = req.files['mainImage'] ? "uploads/" + req.files['mainImage'][0].filename : null;
+        const images = req.files['images'] ? req.files['images'].map(file => "uploads/" + file.filename) : [];
+        
+        const newWatch = new Watch({name, brand, price, mainImage, images});
+        await newWatch.save();
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
 
 app.get("/edit/:watchId", async (req, res) => {
-    const watch = await Watch.findById(req.params.watchId);
-    res.render('edit', { watch } );
-})
-app.post("/update/:watchId", upload.array('images', 5), async (req, res) => {
-    const {name, brand, price} = req.body;
-    const files = req.files;
-    let imagePaths = [];
-    if(files && files.length > 0){
-        imagePaths = files.map(file => "uploads/" + file.filename);
+    try {
+        const watch = await Watch.findById(req.params.watchId);
+        if(!watch) return res.status(404).send("watch not found");
+        res.render('edit', { watch });
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-    await Watch.findByIdAndUpdate(req.params.watchId, {name, brand, price, imagePaths});
-    res.redirect("/");
+})
+app.post("/update/:watchId", upload.fields([
+    { name: 'mainImage', maxCount: 1 },
+    { name: 'images', maxCount: 6 }
+]), async (req, res) => {
+    try {
+        const {name, brand, price} = req.body;
+        const updates = { name, brand, price };
+        if(req.files['mainImages']){
+            updates.mainImage = "uploads/" + req.files['mainImage'][0].filename;
+        }
+        if(req.files['images']){
+            updates.images = req.files['images'].map(file => "uploads/" + file.filename);
+        }
+
+        await Watch.findByIdAndUpdate(req.params.watchId, updates);
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 })
 
 app.get("/:watchName/:watchId", async (req, res) => {
