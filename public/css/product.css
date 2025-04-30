@@ -51,6 +51,10 @@ main{
                     width: 60px;
                     cursor: pointer;
                 }
+                img:hover{
+                    transform: scale(1.03);
+                    border: 2px solid var(--primary-color);
+                }
             }            
         }
         a{
