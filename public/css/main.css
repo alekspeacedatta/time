@@ -22,7 +22,10 @@
     text-transform: capitalize;
     box-sizing: border-box;
 }
-
+i:hover{
+    transform: scale(1.2);
+    transition: .3s ease;
+}
 
 main{
     max-width: 980px;

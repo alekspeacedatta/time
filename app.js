@@ -11,6 +11,16 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use("/uploads", express.static('uploads'));
+app.use(session({
+    secret: "key",
+    resave: false,
+    saveUninitialized: true
+}));
+app.use((req, res, next) => {
+    res.locals.cartItems = req.session.cart || [];
+    res.locals.subtotal = res.locals.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    next();
+  });
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -28,6 +38,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname));
     }
 })
+
 const upload = multer({ storage: storage });
 const Watch = require("./model/watch");
 
@@ -60,6 +71,49 @@ app.post("/add-watch", upload.fields([
     }
 })
 
+app.post("/add-to-cart/:id", async (req, res) => {
+  const product = await Watch.findById(req.params.id);
+  if (!product) return res.status(404).send("Product not found");
+
+  if (!req.session.cart) req.session.cart = [];
+
+  const cartItem = req.session.cart.find(item => item._id == product._id);
+
+  if (cartItem) {
+    cartItem.quantity += 1;
+  } else {
+    req.session.cart.push({
+      _id: product._id,
+      name: product.name,
+      image: product.mainImage,
+      price: product.price,
+      description: product.description,
+      quantity: 1
+    });
+  }
+
+  res.redirect("/");
+});
+
+app.post("/cart/increase/:id", (req, res) => {
+    const cart = req.session.cart;
+    const item = cart.find(p => p._id == req.params.id);
+    if (item) item.quantity += 1;
+    res.redirect("/");
+});
+  
+app.post("/cart/decrease/:id", (req, res) => {
+    const cart = req.session.cart;
+    const item = cart.find(p => p._id == req.params.id);
+    if (item) {
+      item.quantity -= 1;
+      if (item.quantity <= 0) {
+        req.session.cart = cart.filter(p => p._id != req.params.id);
+      }
+    }
+    res.redirect("/");
+});
+  
 app.get("/bag", async (req, res) => {
     const watch = await Watch.findById("6810a0d69c1936b1cdfc1a61");
     res.render("shopping-bag", { watch });

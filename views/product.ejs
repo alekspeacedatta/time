@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/product.css">
     <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/shopping-bag.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -96,9 +97,9 @@
                         <div class="icon-box">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </div>
-                        <button>
-                            add to bag
-                        </button>
+                        <form action="/add-to-cart/<%= watch._id %>" method="POST">
+                            <button type="submit"> add to </button>
+                        </form>
                     </div>
                     <div class="add-to">
                         <div class="icon-box">
@@ -127,9 +128,14 @@
             </section>
         </div>
     </main>
+
+    <%- include('blocks/shoppingBag') -%>
+
     <%- include('blocks/footer') -%>
     <script src="/js/accordion.js"></script>
     <script src="/js/thumbnails.js"></script>
     <script src="/js/thumbnails-slider.js"></script>
+    <script src="/js/cartTougle.js"></script>
+
 </body>
 </html>
