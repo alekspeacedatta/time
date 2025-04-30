@@ -1,0 +1,271 @@
+header{
+    max-width: 980px;
+    margin: 0 auto;
+    margin-top: 41px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .header-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a{
+            text-decoration: none;
+            font-size: var(--fs-bigest);
+            color: var(--primary-color);
+        }
+        .user-action{
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            .search-box{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                border: 2px solid var(--border-color);
+                width: 210px;
+                height: 34px;
+                i{
+                    width: 15px;
+                    height: 15px;
+                }
+                input{
+                    width: 169px;
+                    color: var(--primary-color);
+                    font-size: var(--fs-super-small);
+                    outline: none;
+                    border: none;
+                }
+            }
+            .profile{
+                display: flex;
+                align-items: center;
+                gap: 28px;
+            }
+        }
+    }
+    .header-bottom{
+        background-color: var(--primary-color);
+        .navigation{
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            align-items: center;
+            .item-overlay{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 35px;
+                width: 100px;
+                a{
+                    color: var(--secondary-color);
+                    font-size: var(--fs-small);
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+                .overlay{
+                    position: absolute;
+                    pointer-events: none;
+                    width: 100%;
+                    margin: 0 auto;
+                    z-index: 1000;
+                    background-color: var(--secondary-color);
+                    opacity: 0;
+                    top: 130px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    transition: opacity 0.3s ease;
+                    .overlay-content{
+                        display: flex;
+                        margin: 0 auto;
+                        max-width: 980px;
+                        padding: 20px 0px;
+                        align-items: flex-start;
+                        justify-content: space-evenly;
+                        ul{
+                            list-style: none;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            li{
+                                a{
+                                    text-decoration: none;
+                                    color: var(--primary-color);
+                                    font-size: var(--fs-big);
+                                    text-transform: capitalize;
+                                }
+                                a:hover{
+                                    text-decoration: underline;
+                                    transition: .3s ease-in-out;
+                                }
+                            }
+                            li:hover{
+                                transform: scale(1.05);
+                            }
+                        }
+                        .line{
+                            width: 1px;
+                            height: 289px;
+                            background-color: var(--border-color);
+                        }
+                        .product-categories{
+                            display: flex;
+                            align-items: center;
+                            gap: 41px;
+                            border-left: 2px solid var(--border-color);
+                            padding-left: 40px;
+                            img:hover{
+                                cursor: pointer;
+                            }
+                            img:hover{
+                                transform: scale(1.02);
+                                transition: .2s ease-in-out;   
+                            }
+                            .category{
+                                display: flex;
+                                flex-direction: column;
+                                gap: 20px;
+                                section{
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 12px;
+                                }
+                                button{
+                                    text-transform: uppercase;
+                                    border: 2px solid var(--primary-color);
+                                    color: var(--primary-color);
+                                    cursor: pointer;
+                                    outline: none;
+                                }
+                                button:hover{
+                                    background-color: var(--primary-color);
+                                    color: white;
+                                    transition: .3s ease;
+                                }
+                            }
+                        }
+                    }            
+                }
+                .brands-overlay{
+                    .overlay-content{
+                        justify-content: space-evenly;
+                        section{
+                            gap: 60px;
+                        }
+                        .product-categories{
+                            .category{
+                                flex-direction: row;
+                                .text-image{
+                                    h3{
+                                        color: var(--primary-color);
+                                        font-size: var(--fs-big);
+                                    }
+                                    img{
+                                        width: 237px;
+                                    }
+                                }
+                                .action{
+                                    margin-top: 33px;
+                                    section{
+                                        h4{
+                                            font-size: var(--fs-medium);
+                                            color: var(--primary-color);
+                                            text-transform: uppercase;
+                                        }
+                                        p{
+                                            font-size: var(--fs-medium);
+                                            color: var(--primary-color);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    section{
+                        display: flex;
+                        gap: 21px;
+                    }
+                }
+                .baselworld-overlay{
+                    .overlay-content{
+                        .product-categories{
+                            .category{
+                                display: flex;
+                                flex-direction: row;
+                                .action{
+                                    margin-top: 30px;
+                                    align-items: flex-start;
+                                    width: 184px;
+                                    button{
+                                        width: 188px;
+                                        height: 25px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }    
+            .heading-of{
+                    .overlay{
+                        .overlay-content{
+                            .product-categories{
+                                display: flex;
+                                flex-direction: column;
+                                align-items: self-start;
+                                gap: 20px;
+                                .categories-heading{
+                                    h2{
+                                        font-size: var(--fs-big);
+                                        color: var(--primary-color);
+                                    }
+                                }
+                                .categories-container{
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 41px;
+                                    section{
+                                        display: flex;
+                                        flex-direction: column;
+                                        gap: 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+            .item-overlay:hover{
+                background-color: var(--secondary-color);
+            }
+            .item-overlay:hover a{
+                color: var(--primary-color);
+            }
+            .new-arrivals-item:hover .new-arrivals-overlay, .new-arrivals-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .brands-item:hover .brands-overlay, .brands-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .mens-item:hover .mens-overlay, .mens-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .womens-item:hover .womens-overlay, .womens-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .accessories-item:hover .accessories-overlay, .accessories-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .baselworld-item:hover .baselworld-overlay, .baselworld-overlay:hover{
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+    }
+}
