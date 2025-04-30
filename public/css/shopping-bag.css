@@ -28,9 +28,6 @@
         .item{
             border-bottom: 2px solid var(--border-color);
             padding: 14px 0;
-            p{
-                /* margin-top: 8px; */
-            }
         }
         .item1{
             display: flex;
@@ -147,9 +144,6 @@
                     font-size: var(--fs-super-small);
                 }
             }
-            p{
-
-            }
         }
         .taxes{
             display: flex;
@@ -158,23 +152,6 @@
             .taxes-info{
                 display: flex;
                 justify-content: space-between;
-                h3{
-
-                }
-                p{
-
-                }
-            }
-            p{
-
-            }
-        }
-        .total{
-            h3{
-
-            }
-            p{
-
             }
         }
         .checkout{
