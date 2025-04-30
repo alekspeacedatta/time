@@ -1,0 +1,192 @@
+:root{
+    --primary-color: #2B2B2B;
+    --secondary-color: #E8E8E8;
+    --border-color: #CCCCCC;
+
+
+    --fs-large: 30px;
+    --fs-bigest: 20px;
+    --fs-big: 17px;
+    --fs-medium: 15px;
+    --fs-small: 13px;
+    --fs-super-small: 12px;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.shopping-bag{
+    opacity: 0;
+    position: absolute;
+    width: 342px;
+    height: 556px;
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--border-color);
+    .shopping-bag-content{
+        width: 90%;
+        .item{
+            border-bottom: 2px solid var(--border-color);
+            padding: 14px 0;
+            p{
+                /* margin-top: 8px; */
+            }
+        }
+        .item1{
+            display: flex;
+            justify-content: space-between;
+        }
+        h3{
+            color: var(--primary-color);
+            font-size: var(--fs-medium);
+            text-transform: uppercase;
+        }
+        p{
+            color: var(--primary-color);
+            font-size: var(--fs-super-small);
+        }
+        button{
+            cursor: pointer;
+            outline: none;
+        }
+        .heading{
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            .head-text{
+                display: flex;
+                flex-direction: column;
+                h3{
+
+                }
+                p{
+                    margin-top: 4px;
+                }
+            }
+            button{
+                background-color: transparent;
+                border: none;
+                color: var(--primary-color);
+            }
+        }
+        .product{
+            display: flex;
+            gap: 14px;
+            img{
+                width: 128px;
+                object-fit: cover;
+            }
+            .product-info{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 30px;
+                .product-info-text{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    h4{
+                        font-size: var(--fs-super-small);
+                        text-transform: uppercase;
+                        color: var(--primary-color);
+                    }
+                    p{
+                        font-size: var(--fs-super-small);
+                        color: var(--primary-color);
+                    }
+                }
+                .count{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .counter{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 2px solid var(--border-color);
+                        width: 102px;
+                        gap: 13px;
+                        button{
+                            border: none;
+                            background-color: transparent;
+                            font-size: var(--fs-big);
+                            height: 34px;
+                            width: 70px;
+                        }
+                        .digit{
+    
+                        }
+                    }
+                    p{
+                        font-size: var(--fs-medium);
+                        color: var(--primary-color);
+                    }
+                }
+            }
+        }
+        .subtotal{
+            h3{
+
+            }
+            p{
+
+            }
+        }
+        .shipping{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            .shipping-info{
+                display: flex;
+                justify-content: space-between;
+                h3{
+
+                }
+                p{
+
+                    font-size: var(--fs-super-small);
+                }
+            }
+            p{
+
+            }
+        }
+        .taxes{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            .taxes-info{
+                display: flex;
+                justify-content: space-between;
+                h3{
+
+                }
+                p{
+
+                }
+            }
+            p{
+
+            }
+        }
+        .total{
+            h3{
+
+            }
+            p{
+
+            }
+        }
+        .checkout{
+            width: 220px;
+            height: 44px;
+            background-color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            margin-top: 14px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}

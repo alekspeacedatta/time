@@ -1,4 +1,5 @@
 require("dotenv").config();
+const session = require("express-session")
 const multer = require("multer");
 const path = require("path");
 const express = require("express");
@@ -57,6 +58,11 @@ app.post("/add-watch", upload.fields([
     } catch (error) {
         res.status(500).send(error.message);
     }
+})
+
+app.get("/bag", async (req, res) => {
+    const watch = await Watch.findById("6810a0d69c1936b1cdfc1a61");
+    res.render("shopping-bag", { watch });
 })
 
 app.get("/edit/:watchId", async (req, res) => {
