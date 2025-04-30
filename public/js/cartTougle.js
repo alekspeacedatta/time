@@ -1,11 +1,15 @@
-const cartIcon = document.getElementById("cart-icon");
+document.addEventListener("DOMContentLoaded", () => {
+  const cartIcon = document.querySelector(".fa-cart-shopping");
   const shoppingBag = document.querySelector(".shopping-bag");
-  const closeCartBtn = document.getElementById("close-cart");
 
-  cartIcon?.addEventListener("click", () => {
-    shoppingBag.classList.add("show");
+  cartIcon?.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    shoppingBag?.classList.toggle("show");
   });
 
-  closeCartBtn?.addEventListener("click", () => {
-    shoppingBag.classList.remove("show");
+  document.addEventListener("click", (e) => {
+    if (!shoppingBag?.contains(e.target) && !cartIcon?.contains(e.target)) {
+      shoppingBag?.classList.remove("show");
+    }
   });
+});

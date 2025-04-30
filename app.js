@@ -45,7 +45,13 @@ const Watch = require("./model/watch");
 app.get("/", async (req, res) => {
     try {
         const watches = await Watch.find();
-        res.render('index', { watches });
+        const showBag = req.session.showBag;
+        req.session.showBag = false;
+        res.render("index", {
+            watches,
+            shoppingBag: req.session.shoppingBag || [],
+            showBag
+          });
     } catch (error) {
         res.status(500).send("Server Error");
     }
@@ -54,6 +60,7 @@ app.get("/", async (req, res) => {
 app.get("/add", (req, res) => {
     res.render('add');
 })
+
 app.post("/add-watch", upload.fields([
     {name: 'mainImage', maxCount: 1},
     {name: 'images', maxCount: 6}
@@ -91,6 +98,7 @@ app.post("/add-to-cart/:id", async (req, res) => {
       quantity: 1
     });
   }
+  req.session.showBag = true;
 
   res.redirect("/");
 });

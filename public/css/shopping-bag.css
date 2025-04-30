@@ -17,14 +17,15 @@
 }
 .shopping-bag{
     opacity: 0;
+    transition: .3s ease-in;
     position: fixed;
     transition: all .3s ease;
     z-index: 100;
-    top: 75px;
-    right: 330px;
+    top: 0px;
+    right: -342px;
     pointer-events: none;
     width: 342px;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     background-color: white;
@@ -185,4 +186,6 @@
 .shopping-bag.show{
     opacity: 1;
     pointer-events: auto;
+    transition: .3s ease-in-out;
+    right: 0px;
 }

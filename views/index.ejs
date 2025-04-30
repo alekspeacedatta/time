@@ -15,45 +15,33 @@
         <%- include('blocks/shoppingBag') -%>
         <div class="products-container">
             <div class="products-container-content">
+                <!-- CASIO -->
                 <div class="brand casio">
                     <div class="products-heading">
-                        <h3>
-                            best of Casio
-                        </h3>
+                        <h3>best of Casio</h3>
                         <div class="prev-next">
-                            <button class="prev">
-                                &#10094
-                            </button>
-                            <button class="next">
-                                &#10095
-                            </button>
+                            <button class="prev">&#10094</button>
+                            <button class="next">&#10095</button>
                         </div>
                     </div>
                     <div class="slider-container">
                         <div class="slider">
                             <% watches.forEach(watch =>  { %>
                                 <% if(watch.brand === "CASIO")  { %>
-                                    <div class="slide slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
+                                    <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
-                                                    <span>
-                                                        <%= watch.brand %>
-                                                    </span>
-                                                    <h3>
-                                                        <%= watch.name %>
-                                                    </h3>
+                                                    <span><%= watch.brand %></span>
+                                                    <h3><%= watch.name %></h3>
                                                 </div>
                                             </section>
                                             <div class="slide-price">
-                                                <p>
-                                                    <%= watch.price %> $
-                                                </p>
+                                                <p><%= watch.price %> $</p>
                                                 <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit"> add to </button>
+                                                    <button type="submit">add to</button>
                                                 </form>
-                                                <!-- <a href="/edit/<%= watch._id %>">edit</a> -->
                                             </div>     
                                         </div>
                                     </div>
@@ -62,14 +50,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- SKAGEN -->
                 <div class="brand skagen">
                     <div class="products-heading">
-                        <h3>
-                            best of Skagen
-                        </h3>
+                        <h3>best of Skagen</h3>
                         <div class="prev-next">
-                            <button class="prev"> &#10094 </button>
-                            <button class="next"> &#10095 </button>
+                            <button class="prev">&#10094</button>
+                            <button class="next">&#10095</button>
                         </div>
                     </div>
                     <div class="slider-container">
@@ -81,22 +69,15 @@
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
-                                                    <span>
-                                                        <%= watch.brand %>
-                                                    </span>
-                                                    <h3>
-                                                        <%= watch.name %>
-                                                    </h3>
+                                                    <span><%= watch.brand %></span>
+                                                    <h3><%= watch.name %></h3>
                                                 </div>
                                             </section>
                                             <div class="slide-price">
-                                                <p>
-                                                    <%= watch.price %> $
-                                                </p>
+                                                <p><%= watch.price %> $</p>
                                                 <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit"> add to </button>
+                                                    <button type="submit">add to</button>
                                                 </form>
-                                                <!-- <a href="/edit/<%= watch._id %>">edit</a> -->
                                             </div>     
                                         </div>
                                     </div>
@@ -105,14 +86,14 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- DANIEL WELLINGTON -->
                 <div class="brand daniel-wellington">
                     <div class="products-heading">
-                        <h3>
-                            best of Daniel Wellington
-                        </h3>
+                        <h3>best of Daniel Wellington</h3>
                         <div class="prev-next">
-                            <button class="prev"> &#10094 </button>
-                            <button class="next"> &#10095 </button>
+                            <button class="prev">&#10094</button>
+                            <button class="next">&#10095</button>
                         </div>
                     </div>
                     <div class="slider-container">
@@ -124,22 +105,15 @@
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
-                                                    <span>
-                                                        <%= watch.brand %>
-                                                    </span>
-                                                    <h3>
-                                                        <%= watch.name %>
-                                                    </h3>
+                                                    <span><%= watch.brand %></span>
+                                                    <h3><%= watch.name %></h3>
                                                 </div>
                                             </section>
                                             <div class="slide-price">
-                                                <p>
-                                                    <%= watch.price %> $
-                                                </p>
+                                                <p><%= watch.price %> $</p>
                                                 <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit"> add to </button>
+                                                    <button type="submit">add to</button>
                                                 </form>
-                                                <!-- <a href="/edit/<%= watch._id %>">edit</a> -->
                                             </div>     
                                         </div>
                                     </div>
@@ -151,12 +125,23 @@
             </div>
         </div>
     </main>
+
     <%- include("blocks/shoppingBag") %>
+    <%- include("blocks/footer") -%>
 
+    <script src="/js/slider.js"></script>
+    <script src="/js/cartTougle.js"></script>
 
-    <%- include('blocks/footer') -%>
-
-    <script src="js/slider.js"></script>
-    <script src="js/cartTougle.js"></script>
+    <!-- Auto-show shopping bag after adding to cart -->
+    <% if (typeof showBag !== 'undefined' && showBag) { %>
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          const bag = document.querySelector(".shopping-bag");
+          if (bag && !bag.classList.contains("show")) {
+            bag.classList.add("show");
+          }
+        });
+      </script>
+    <% } %>
 </body>
 </html>
