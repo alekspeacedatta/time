@@ -11,6 +11,7 @@
 </head>
 <body>
     <%- include('blocks/header') -%>
+    <%- include('blocks/shopping-bag') -%>
     
         <main>
             <div class="product-images">
@@ -129,13 +130,24 @@
         </div>
     </main>
 
-    <%- include('blocks/shoppingBag') -%>
 
     <%- include('blocks/footer') -%>
     <script src="/js/accordion.js"></script>
     <script src="/js/thumbnails.js"></script>
     <script src="/js/thumbnails-slider.js"></script>
     <script src="/js/cartTougle.js"></script>
+    
+    <% if (typeof showBag !== 'undefined' && showBag) { %>
+        <script>
+          window.addEventListener("DOMContentLoaded", () => {
+            const bag = document.querySelector(".shopping-bag");
+            if (bag && !bag.classList.contains("show")) {
+              bag.classList.add("show");
+            }
+          });
+        </script>
+    <% } %>
+    
 
 </body>
 </html>

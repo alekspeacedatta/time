@@ -17,11 +17,14 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use((req, res, next) => {
-    res.locals.cartItems = req.session.cart || [];
-    res.locals.subtotal = res.locals.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    res.locals.shoppingBag = req.session.cart || [];    
+    res.locals.subtotal = res.locals.shoppingBag.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
+    res.locals.isEmptyCart = res.locals.shoppingBag.length === 0;    
+
+    res.locals.showBag = req.session.showBag || false;    
+    req.session.showBag = false;
     next();
   });
-
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -45,13 +48,7 @@ const Watch = require("./model/watch");
 app.get("/", async (req, res) => {
     try {
         const watches = await Watch.find();
-        const showBag = req.session.showBag;
-        req.session.showBag = false;
-        res.render("index", {
-            watches,
-            shoppingBag: req.session.shoppingBag || [],
-            showBag
-          });
+        res.render("index", { watches });
     } catch (error) {
         res.status(500).send("Server Error");
     }
@@ -86,27 +83,33 @@ app.post("/add-to-cart/:id", async (req, res) => {
 
   const cartItem = req.session.cart.find(item => item._id == product._id);
 
-  if (cartItem) {
-    cartItem.quantity += 1;
-  } else {
-    req.session.cart.push({
-      _id: product._id,
-      name: product.name,
-      image: product.mainImage,
-      price: product.price,
-      description: product.description,
-      quantity: 1
-    });
+  if (!cartItem) {
+      req.session.cart.push({
+          _id: product._id,
+          name: product.name,
+          image: product.mainImage,
+          price: product.price,
+          quantity: 1
+        });
+    } else {
+      cartItem.quantity += 1;
   }
   req.session.showBag = true;
-  res.redirect("/");
+//   console.log("cartItem variable only === ");
+//   console.log(cartItem);
+//   req.session.cart.forEach(element => {
+//     console.log("req.session.cart object name:   " + element.name);
+//     console.log(element);
+//   });
+  res.redirect(req.get('Referrer' || '/'));
 });
 
 app.post("/cart/increase/:id", (req, res) => {
     const cart = req.session.cart;
     const item = cart.find(p => p._id == req.params.id);
     if (item) item.quantity += 1;
-    res.redirect("/");
+
+    res.redirect(req.get('Referrer' || '/'));
 });
   
 app.post("/cart/decrease/:id", (req, res) => {
@@ -118,7 +121,7 @@ app.post("/cart/decrease/:id", (req, res) => {
         req.session.cart = cart.filter(p => p._id != req.params.id);
       }
     }
-    res.redirect("/");
+    res.redirect(req.get('Referrer' || '/'));
 });
   
 
@@ -156,16 +159,14 @@ app.get("/:watchName/:watchId", async (req, res) => {
     try {
         const watch = await Watch.findById(req.params.watchId);
         if(!watch){ 
-            return res.status(404).send("Watch not found")
+            return res.status(404).send("Watch not found");
         };
         res.render("product", { watch });
     } catch (error) {
         res.status(500).send("Server Error");
     }
 })
-
-
-
+ 
 app.listen(3000, () => {
     console.log("http://localhost:3000");
 })

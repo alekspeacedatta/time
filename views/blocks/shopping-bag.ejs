@@ -3,14 +3,14 @@
       <div class="heading item">
         <section class="head-text">
           <h3>shopping bag</h3>
-          <p>you have <%= cartItems.length %> item(s) in your bag</p>
+          <p>you have <%= shoppingBag.length %> item(s) in your bag</p>
         </section>
         <button id="close-cart">&#10005;</button>
       </div>
   
-      <% if (cartItems.length > 0) { %>
-        <% cartItems.forEach(item => { %>
-          <div class="product item">
+      <% if (shoppingBag.length > 0) { %>
+        <% shoppingBag.forEach(item => { %>
+          <div class="product item" >
             <img src="<%= item.image %>" alt="<%= item.name %>">
             <div class="product-info">
               <div class="product-info-text">
