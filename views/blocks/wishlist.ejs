@@ -11,7 +11,7 @@
           <% if (wishList.length > 0) { %>
             <% wishList.forEach(item => { %>
               <div class="product item" >
-                <img src="<%= item.image %>" alt="<%= item.name %>">
+                <img src="<%= item.image %>" alt="<%= item.name %>" onclick="window.location.href='/<%= encodeURIComponent(item.name.replace(/\s+/g, '-')) %>/<%= item._id %>'">
                 <div class="product-info">
                   <div class="product-info-text">
                     <h4><%= item.name %></h4>
