@@ -99,7 +99,6 @@ app.post("/add-to-cart/:id", async (req, res) => {
     });
   }
   req.session.showBag = true;
-
   res.redirect("/");
 });
 
@@ -122,10 +121,6 @@ app.post("/cart/decrease/:id", (req, res) => {
     res.redirect("/");
 });
   
-app.get("/bag", async (req, res) => {
-    const watch = await Watch.findById("6810a0d69c1936b1cdfc1a61");
-    res.render("shopping-bag", { watch });
-})
 
 app.get("/edit/:watchId", async (req, res) => {
     try {
@@ -168,7 +163,6 @@ app.get("/:watchName/:watchId", async (req, res) => {
         res.status(500).send("Server Error");
     }
 })
-
 
 
 

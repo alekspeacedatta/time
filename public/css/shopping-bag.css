@@ -16,7 +16,6 @@
     padding: 0;
 }
 .shopping-bag{
-    opacity: 0;
     transition: .3s ease-in;
     position: fixed;
     transition: all .3s ease;
@@ -184,7 +183,6 @@
     }
 }
 .shopping-bag.show{
-    opacity: 1;
     pointer-events: auto;
     transition: .3s ease-in-out;
     right: 0px;
