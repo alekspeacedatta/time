@@ -12,6 +12,7 @@
 <body>
     <%- include('blocks/header') -%>
     <%- include('blocks/shopping-bag') -%>
+    <%- include('blocks/wishlist') -%>
     
         <main>
             <div class="product-images">
@@ -106,9 +107,11 @@
                         <div class="icon-box">
                             <i class="fa-regular fa-star"></i>
                         </div>
-                        <button class="add-to-wish-list-button">
-                            add to wish list
-                        </button>
+                        <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
+                            <button class="add-to-wish-list-button"> 
+                                add to wishlist 
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <a href="">
@@ -130,6 +133,14 @@
         </div>
     </main>
 
+    <div class="fixed">
+        <div class="fixed-cart">
+            <i id="cart-icon2" class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div class="fixed-wishlist">
+        <i id="wishlist-icon" class="fa-regular fa-star"></i>
+        </div>
+    </div>
 
     <%- include('blocks/footer') -%>
     <script src="/js/accordion.js"></script>
@@ -147,7 +158,16 @@
           });
         </script>
     <% } %>
-    
+    <% if (typeof showWishList !== 'undefined' && showWishList) { %>
+        <script>
+          window.addEventListener("DOMContentLoaded", () => {
+            const wishList = document.querySelector(".wishlist");
+            if (wishList && !wishList.classList.contains("show")) {
+              wishList.classList.add("show");
+            }
+          });
+        </script>
+    <% } %>
 
 </body>
 </html>

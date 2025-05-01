@@ -1,0 +1,28 @@
+    <div class="shopping-bag wishlist">
+        <div class="shopping-bag-content">
+          <div class="heading item">
+            <section class="head-text">
+              <h3>wishlist</h3>
+              <p>you have <%= wishList.length %> item(s) in your bag</p>
+            </section>
+            <button id="wishlist-close-cart">&#10005;</button>
+          </div>
+      
+          <% if (wishList.length > 0) { %>
+            <% wishList.forEach(item => { %>
+              <div class="product item" >
+                <img src="<%= item.image %>" alt="<%= item.name %>">
+                <div class="product-info">
+                  <div class="product-info-text">
+                    <h4><%= item.name %></h4>
+                    <p> Max Bill Chronoscope 40mm Stainless Steel and Leather </p>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p>Your cart is empty.</p>
+          <% } %>
+          <button class="checkout">continue to checkout</button>
+        </div>
+      </div>

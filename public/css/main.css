@@ -49,7 +49,7 @@
   
 .fixed-cart:hover, .fixed-wishlist:hover{
     transform: scale(1.2);
-    transition: .3s ease;
+    transition: .3s ease-in-out;
     i{
 
     }
@@ -108,12 +108,32 @@ main{
                             justify-content: center;
                             box-shadow: 0px 0px 5px 0px var(--border-color);
                             cursor: pointer;
+                            position: relative;
                             .slide-content{
                                 width: 90%;
                                 padding: 10px 0;
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: space-between;
+                                .wishlist-form{
+                                    position: absolute;
+                                    right: 8px;
+                                    top: 12px;
+                                    button{
+                                        cursor: pointer;
+                                        outline: none;
+                                        background-color: transparent;
+                                        border: 1px solid var(--primary-color);
+                                        padding: 2px;
+                                        color: var(--primary-color);
+                                    }
+                                    button:hover{
+                                        transform: scale(1.05);
+                                        transition: .3s ease;
+                                        background-color: var(--primary-color);
+                                        color: white;
+                                    }
+                                }
                                 img{
                                     width: 100%;
                                     height: 220px;

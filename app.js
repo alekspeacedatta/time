@@ -21,6 +21,12 @@ app.use((req, res, next) => {
     res.locals.subtotal = res.locals.shoppingBag.reduce((sum, item) => sum + item.price * item.quantity, 0) || 0;
     res.locals.isEmptyCart = res.locals.shoppingBag.length === 0;    
 
+    res.locals.wishList = req.session.wishlist || [];
+    // res.locals.isEmptyWishList = req.locals.wishList.length === 0;
+
+    res.locals.showWishList = req.session.showWishList || false;
+    req.session.showWishList = false;
+
     res.locals.showBag = req.session.showBag || false;    
     req.session.showBag = false;
     next();
@@ -74,7 +80,25 @@ app.post("/add-watch", upload.fields([
         res.status(500).send(error.message);
     }
 })
+app.post("/add-to-wishlist/:id", async (req, res) => {
+    const product = await Watch.findById(req.params.id);
+    if(!product) return res.status(404).send("Product not found");
 
+    if(!req.session.wishlist) req.session.wishlist = [];
+
+    const wishlistItem = req.session.wishlist.find(item => item._id == product._id);
+
+    if(!wishlistItem){
+        req.session.wishlist.push({
+            _id: product._id,
+            name: product.name,
+            image: product.mainImage,
+            price: product.price,
+        })
+    }
+    req.session.showWishList = true;
+    res.redirect(req.get('Referrer' || '/'));
+})
 app.post("/add-to-cart/:id", async (req, res) => {
   const product = await Watch.findById(req.params.id);
   if (!product) return res.status(404).send("Product not found");

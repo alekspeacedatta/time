@@ -13,6 +13,7 @@
     <%- include('blocks/header') -%>
     <main>
         <%- include('blocks/shopping-bag') -%>
+        <%- include('blocks/wishlist') -%>
         <div class="products-container">
             <div class="products-container-content">
                 <!-- CASIO -->
@@ -30,6 +31,11 @@
                                 <% if(watch.brand === "CASIO")  { %>
                                     <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
+                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
+                                                <button> 
+                                                    <i class="fa-regular fa-star"></i>
+                                                </button>
+                                            </form>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -66,6 +72,11 @@
                                 <% if(watch.brand === "SKAGEN"){ %>
                                     <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
+                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
+                                                <button> 
+                                                    <i class="fa-regular fa-star"></i>
+                                                </button>
+                                            </form>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -102,6 +113,11 @@
                                 <% if(watch.brand === "DANIEL WELLINGTON") { %>
                                     <div class="slide daniel-wellington" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
+                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
+                                                <button> 
+                                                    <i class="fa-regular fa-star"></i>
+                                                </button>
+                                            </form>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -131,7 +147,7 @@
             <i id="cart-icon2" class="fa-solid fa-cart-shopping"></i>
         </div>
         <div class="fixed-wishlist">
-        <i class="fa-regular fa-star"></i>
+        <i id="wishlist-icon" class="fa-regular fa-star"></i>
         </div>
     </div>
 
@@ -149,6 +165,16 @@
           const bag = document.querySelector(".shopping-bag");
           if (bag && !bag.classList.contains("show")) {
             bag.classList.add("show");
+          }
+        });
+      </script>
+    <% } %>
+    <% if (typeof showWishList !== 'undefined' && showWishList) { %>
+      <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          const wishList = document.querySelector(".wishlist");
+          if (wishList && !wishList.classList.contains("show")) {
+            wishList.classList.add("show");
           }
         });
       </script>
