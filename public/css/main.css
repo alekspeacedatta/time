@@ -45,13 +45,73 @@
     .fixed-wishlist:hover {
         background-color: #555;
      }
-  }
+}
   
 .fixed-cart:hover, .fixed-wishlist:hover{
     transform: scale(1.2);
     transition: .3s ease-in-out;
     i{
 
+    }
+}
+.hero-section{
+    padding: 20px 0px;
+    .hero-section-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 80vh;
+        border: 2px solid var(--primary-color);
+        .hero-image{
+            position: relative;
+            background-image: url("/images/hero-image.jpg");
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: 100%;
+            gap: 35px;
+            section{
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                h1{
+                    color: white;
+                    font-size: var(--fs-large);
+                }
+                p{
+                    color: white;
+                    font-size: var(--fs-bigest);
+                }
+            }
+            button{
+                position: relative;
+                z-index: 1;
+                width: 124px;
+                height: 36px;
+                color: white;
+                border: 2px solid white;
+                background-color: transparent;
+                cursor: pointer;
+                outline: none;
+            }
+        }
+        .hero-image::before{
+            content: " ";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 0;
+            background-color: rgba(20, 20, 20, 0.86);
+
+        }
     }
 }
 main{
