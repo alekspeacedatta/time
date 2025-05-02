@@ -14,7 +14,47 @@
     <main>
         <%- include('blocks/shopping-bag') -%>
         <%- include('blocks/wishlist') -%>
+
+
+        
         <div class="products-container">
+
+            <div class="all-products">
+                <div class="all-products-content">
+                    <div class="all-products-heading">
+                        <h3>
+                            all you need is time
+                        </h3>
+                    </div>
+                    <div class="all-products-container">
+                        <% watches.forEach(watch => { %>
+                                <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
+                                    <div class="slide-content">
+                                        <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
+                                            <button> 
+                                                <i class="fa-regular fa-star"></i>
+                                            </button>
+                                        </form>
+                                        <section>
+                                            <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
+                                            <div class="slide-heading">
+                                                <span><%= watch.brand %></span>
+                                                <h3><%= watch.name %></h3>
+                                            </div>
+                                        </section>
+                                        <div class="slide-price">
+                                            <p><%= watch.price %> $</p>
+                                            <form action="/add-to-cart/<%= watch._id %>" method="POST">
+                                                <button type="submit">add to</button>
+                                            </form>
+                                        </div>     
+                                    </div>
+                                </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+
             <div class="products-container-content">
                 <!-- CASIO -->
                 <div class="brand casio">
@@ -139,6 +179,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </main>
 

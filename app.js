@@ -59,27 +59,34 @@ app.get("/", async (req, res) => {
         res.status(500).send("Server Error");
     }
 })
-
-app.get("/add", (req, res) => {
-    res.render('add');
-})
-
-app.post("/add-watch", upload.fields([
-    {name: 'mainImage', maxCount: 1},
-    {name: 'images', maxCount: 6}
-]), async (req, res) => {
+app.get("/:watchName/:watchId", async (req, res) => {
     try {
-        const { name, brand, price } = req.body;
-        const mainImage = req.files['mainImage'] ? "uploads/" + req.files['mainImage'][0].filename : null;
-        const images = req.files['images'] ? req.files['images'].map(file => "uploads/" + file.filename) : [];
-        
-        const newWatch = new Watch({name, brand, price, mainImage, images});
-        await newWatch.save();
-        res.redirect('/');
+        const watch = await Watch.findById(req.params.watchId);
+        if(!watch){ 
+            return res.status(404).send("Watch not found");
+        };
+        res.render("product", { watch });
     } catch (error) {
-        res.status(500).send(error.message);
+        res.status(500).send("Server Error");
     }
-})
+});
+
+app.get("/search", async (req, res) => {
+    const searchQuery = req.query.query;
+    try {
+        const regex = new RegExp(searchQuery, 'i'); 
+        const watches = await Watch.find({ 
+            $or: [
+                { name: regex },
+                { brand: regex }
+            ]
+        });
+        res.render("index", { watches });
+    } catch (err) {
+        res.status(500).send("Search error");
+    }
+});
+
 app.post("/add-to-wishlist/:id", async (req, res) => {
     const product = await Watch.findById(req.params.id);
     if(!product) return res.status(404).send("Product not found");
@@ -127,7 +134,6 @@ app.post("/add-to-cart/:id", async (req, res) => {
 //   });
   res.redirect(req.get('Referrer' || '/'));
 });
-
 app.post("/cart/increase/:id", (req, res) => {
     const cart = req.session.cart;
     const item = cart.find(p => p._id == req.params.id);
@@ -135,7 +141,6 @@ app.post("/cart/increase/:id", (req, res) => {
 
     res.redirect(req.get('Referrer' || '/'));
 });
-  
 app.post("/cart/decrease/:id", (req, res) => {
     const cart = req.session.cart;
     const item = cart.find(p => p._id == req.params.id);
@@ -148,6 +153,32 @@ app.post("/cart/decrease/:id", (req, res) => {
     res.redirect(req.get('Referrer' || '/'));
 });
   
+
+
+
+
+ 
+
+
+app.get("/add", (req, res) => {
+    res.render('add');
+})
+app.post("/add-watch", upload.fields([
+    {name: 'mainImage', maxCount: 1},
+    {name: 'images', maxCount: 6}
+]), async (req, res) => {
+    try {
+        const { name, brand, price } = req.body;
+        const mainImage = req.files['mainImage'] ? "uploads/" + req.files['mainImage'][0].filename : null;
+        const images = req.files['images'] ? req.files['images'].map(file => "uploads/" + file.filename) : [];
+        
+        const newWatch = new Watch({name, brand, price, mainImage, images});
+        await newWatch.save();
+        res.redirect('/');
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+})
 
 app.get("/edit/:watchId", async (req, res) => {
     try {
@@ -179,18 +210,6 @@ app.post("/update/:watchId", upload.fields([
     }
 })
 
-app.get("/:watchName/:watchId", async (req, res) => {
-    try {
-        const watch = await Watch.findById(req.params.watchId);
-        if(!watch){ 
-            return res.status(404).send("Watch not found");
-        };
-        res.render("product", { watch });
-    } catch (error) {
-        res.status(500).send("Server Error");
-    }
-})
- 
 app.listen(3000, () => {
     console.log("http://localhost:3000");
 })

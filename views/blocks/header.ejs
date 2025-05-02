@@ -4,10 +4,11 @@
             calibre
         </a>
         <div class="user-action">
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search">
-            </div>
+            
+            <form action="/search" method="GET" class="search-box">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="text" name="query" placeholder="Search for watches..." required>
+            </form>            
             <div class="profile">
                 <i class="fa-regular fa-user"></i>
                 <i class="fa-regular fa-star"></i>
