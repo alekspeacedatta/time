@@ -80,6 +80,7 @@ app.post("/add-watch", upload.fields([
         res.status(500).send(error.message);
     }
 })
+
 app.post("/add-to-wishlist/:id", async (req, res) => {
     const product = await Watch.findById(req.params.id);
     if(!product) return res.status(404).send("Product not found");
@@ -97,8 +98,14 @@ app.post("/add-to-wishlist/:id", async (req, res) => {
         })
     }
     req.session.showWishList = true;
+
+    if (req.headers.accept.includes('application/json')) {
+        return res.json({ success: true});
+    }
+
     res.redirect(req.get('Referrer' || '/'));
 })
+
 app.post("/add-to-cart/:id", async (req, res) => {
   const product = await Watch.findById(req.params.id);
   if (!product) return res.status(404).send("Product not found");
@@ -125,8 +132,18 @@ app.post("/add-to-cart/:id", async (req, res) => {
 //     console.log("req.session.cart object name:   " + element.name);
 //     console.log(element);
 //   });
-  res.redirect(req.get('Referrer' || '/'));
+    res.render("blocks/shopping-bag", { cart: req.session.cart }, (err, html) => {
+        if (err) return res.status(500).send("Render error");
+        res.send({ html });
+    });
 });
+
+app.get("/cart/blocks", (req, res) => {
+    res.render('blocks/shopping-bag', { cart: req.session.cart || [] });
+})
+app.get("/wishlist/blocks", (req, res) => {
+    res.render('blocks/wishlist', { wishList: req.session.wishList || [] });
+})
 
 app.post("/cart/increase/:id", (req, res) => {
     const cart = req.session.cart;

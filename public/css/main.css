@@ -115,24 +115,20 @@ main{
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: space-between;
-                                .wishlist-form{
-                                    position: absolute;
-                                    right: 8px;
-                                    top: 12px;
-                                    button{
-                                        cursor: pointer;
-                                        outline: none;
-                                        background-color: transparent;
-                                        border: 1px solid var(--primary-color);
-                                        padding: 2px;
-                                        color: var(--primary-color);
-                                    }
-                                    button:hover{
-                                        transform: scale(1.05);
-                                        transition: .3s ease;
-                                        background-color: var(--primary-color);
-                                        color: white;
-                                    }
+                                button{
+                                    width: 20px;
+                                    cursor: pointer;
+                                    outline: none;
+                                    background-color: transparent;
+                                    border: 1px solid var(--primary-color);
+                                    padding: 2px;
+                                    color: var(--primary-color);
+                                }
+                                button:hover{
+                                    transform: scale(1.05);
+                                    transition: .3s ease;
+                                    background-color: var(--primary-color);
+                                    color: white;
                                 }
                                 img{
                                     width: 100%;

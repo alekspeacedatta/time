@@ -31,11 +31,9 @@
                                 <% if(watch.brand === "CASIO")  { %>
                                     <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
-                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
-                                                <button> 
-                                                    <i class="fa-regular fa-star"></i>
-                                                </button>
-                                            </form>
+                                            <button class="add-to-wishlist-btn" data-id="<%= watch._id %>">
+                                                <i class="fa-regular fa-star"></i>
+                                            </button>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -45,9 +43,7 @@
                                             </section>
                                             <div class="slide-price">
                                                 <p><%= watch.price %> $</p>
-                                                <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit">add to</button>
-                                                </form>
+                                                <button class="add-to-cart-btn" data-id="<%= watch._id %>"> add to  </button>
                                             </div>     
                                         </div>
                                     </div>
@@ -72,11 +68,9 @@
                                 <% if(watch.brand === "SKAGEN"){ %>
                                     <div class="slide" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
-                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
-                                                <button> 
-                                                    <i class="fa-regular fa-star"></i>
-                                                </button>
-                                            </form>
+                                            <button class="add-to-wishlist-btn" data-id="<%= watch._id %>">
+                                                <i class="fa-regular fa-star"></i>
+                                            </button>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -86,9 +80,7 @@
                                             </section>
                                             <div class="slide-price">
                                                 <p><%= watch.price %> $</p>
-                                                <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit">add to</button>
-                                                </form>
+                                                <button class="add-to-cart-btn" data-id="<%= watch._id %>"> add to  </button>
                                             </div>     
                                         </div>
                                     </div>
@@ -113,11 +105,9 @@
                                 <% if(watch.brand === "DANIEL WELLINGTON") { %>
                                     <div class="slide daniel-wellington" onclick="window.location.href='/<%= encodeURIComponent(watch.name.replace(/\s+/g, '-')) %>/<%= watch.id %>'">
                                         <div class="slide-content">
-                                            <form action="/add-to-wishlist/<%= watch._id %>" class="wishlist-form" method="POST">
-                                                <button> 
-                                                    <i class="fa-regular fa-star"></i>
-                                                </button>
-                                            </form>
+                                            <button class="add-to-wishlist-btn" data-id="<%= watch._id %>">
+                                                <i class="fa-regular fa-star"></i>
+                                            </button>
                                             <section>
                                                 <img src="<%= watch.mainImage %>" alt="<%= watch.name %>">
                                                 <div class="slide-heading">
@@ -127,9 +117,7 @@
                                             </section>
                                             <div class="slide-price">
                                                 <p><%= watch.price %> $</p>
-                                                <form action="/add-to-cart/<%= watch._id %>" method="POST">
-                                                    <button type="submit">add to</button>
-                                                </form>
+                                                <button class="add-to-cart-btn" data-id="<%= watch._id %>">add to</button>
                                             </div>     
                                         </div>
                                     </div>
@@ -157,6 +145,7 @@
 
     <script src="/js/slider.js"></script>
     <script src="/js/cartTougle.js"></script>
+    <script src="/js/cart-action.js"></script>
 
     <!-- Auto-show shopping bag after adding to cart -->
     <% if (typeof showBag !== 'undefined' && showBag) { %>
