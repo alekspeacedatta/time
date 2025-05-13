@@ -1,3 +1,15 @@
+:root{
+    --primary-color: #171A20;
+    --secondary-color: #E8E8E8;
+    --border-color: #CCCCCC;
+
+    --fs-large: 30px;
+    --fs-bigest: 20px;
+    --fs-big: 17px;
+    --fs-medium: 15px;
+    --fs-small: 13px;
+    --fs-super-small: 12px;
+}
 header{
     max-width: 980px;
     margin: 0 auto;
