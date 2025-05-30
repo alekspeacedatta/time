@@ -154,12 +154,6 @@ app.post("/cart/decrease/:id", (req, res) => {
 });
   
 
-
-
-
- 
-
-
 app.get("/add", (req, res) => {
     res.render('add');
 })
