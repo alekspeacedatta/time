@@ -16,7 +16,7 @@ document.querySelectorAll(".brand").forEach(brandSection => {
         else{
             slideIndex = index;
         }
-        slider.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
+        slider.style.transform = `translateX(-${slideIndex * 23}vw)`;
     }
     next.addEventListener("click", () => { showSlide(slideIndex + 1)});
     prev.addEventListener("click", () => { showSlide(slideIndex - 1)});
