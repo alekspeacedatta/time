@@ -278,10 +278,6 @@ header{
                         }
                     }
             }
-            .item-overlay:focus{
-                /* background-color: var(--secondary-color); */
-                /* transform: translateY(-2px); */
-            }
             .item-overlay:hover a{
                 /* color: var(--primary-color); */
                 transform: translateY(-2px);
