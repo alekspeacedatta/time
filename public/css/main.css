@@ -108,7 +108,7 @@
     }
 }
 main{
-    max-width: 980px;
+    max-width: 75vw;
     margin: 0 auto;
     padding: 0;
     position: relative;
@@ -141,6 +141,17 @@ main{
                             border-radius: 1000px;
                             background-color: transparent;
                             border: 2px solid var(--primary-color);
+                            transition: transform .3s;
+                        }
+                        .next:hover{
+                            background-color: #171A20;
+                            color: white;
+                            transform: translateX(1px);
+                        }
+                        .prev:hover{
+                            background-color: #171A20;
+                            color: white;
+                            transform: translateX(-1px);
                         }
                     }                
                 }
@@ -150,13 +161,12 @@ main{
                     .slider{
                         gap: 15px;
                         display: flex;
-                        align-items: center;
+                        align-items: stretch;
                         width: max-content;
                         padding: 15px 4px;
                         transition: transform 0.5s ease;
                         .slide{
                             width: 15vw;
-                            height: 355px;
                             display: flex;
                             justify-content: center;
                             box-shadow: 0px 0px 5px 0px var(--border-color);
@@ -217,6 +227,8 @@ main{
                                 .slide-price{
                                     display: flex;
                                     justify-content: space-between;
+                                    flex-wrap: wrap;
+                                    margin-top: 20px;
                                     p{
                                         font-size: var(--fs-bigest);
                                     }
@@ -358,7 +370,7 @@ main{
 footer{
     background-color: var(--secondary-color);
     .footer-content{
-        max-width: 960px;
+        max-width: 85vw;
         margin: 0 auto;
         padding-top: 44px;
         padding-bottom: 38px;
@@ -418,6 +430,29 @@ footer{
                 gap: 30px;
                 i{
                     cursor: pointer;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 768px) {
+    main{
+        .products-container{
+            .products-container-content{
+                .brand{
+                    .slider-container{
+                        .slider{
+                            .slide{
+                                width: 21vw;
+                                .slide-content{
+                                    .img{
+                                        width: 20vw;
+                                        height: 25vh;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

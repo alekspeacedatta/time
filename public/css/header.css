@@ -11,7 +11,7 @@
     --fs-super-small: 12px;
 }
 header{
-    max-width: 980px;
+    max-width: 85vw;
     margin: 0 auto;
     margin-top: 25px;
     display: flex;
@@ -87,7 +87,7 @@ header{
         .navigation{
             display: flex;
             justify-content: center;
-            gap: 70px;
+            gap: 2rem;
             align-items: center;
             .item-overlay{
                 cursor: pointer;
@@ -107,12 +107,12 @@ header{
                 .overlay{
                     position: absolute;
                     pointer-events: none;
-                    width: 981px;
+                    width: 85vw;
                     margin: 0 auto;
                     z-index: 1000;
                     background-color: var(--secondary-color);
                     opacity: 0;
-                    top: 140px;
+                    top: 120px;
                     left: 50%;
                     transform: translateX(-50%);
                     transition: opacity .5s ease;

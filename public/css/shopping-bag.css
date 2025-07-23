@@ -39,6 +39,10 @@
         .item{
             border-bottom: 2px solid var(--border-color);
             padding: 14px 0;
+            transition: transform .2s;
+        }
+        .item:hover{
+            transform: translateY(-2px);
         }
         .item1{
             display: flex;
@@ -88,6 +92,10 @@
                 width: 128px;
                 object-fit: cover;
                 cursor: pointer;
+                transition: transform .2s;
+            }
+            img:hover{
+                transform: translateY(-3px);
             }
             .product-info{
                 display: flex;
@@ -125,6 +133,12 @@
                             font-size: var(--fs-big);
                             height: 34px;
                             width: 35px;
+                            cursor: pointer;
+                            transition: background .2s;
+                        }
+                        button:hover{
+                            background-color: #171A20;
+                            color: white;
                         }
                     }
                     p{
@@ -175,8 +189,11 @@
             color: var(--secondary-color);
             text-transform: uppercase;
             margin: 14px 0px;
-            margin-left: 50%;
-            transform: translateX(-50%);
+            margin-left: 13%;
+            transition: transform .2s;
+        }
+        .checkout:hover{
+            transform: translateY(-2px);
         }
     }
 }

@@ -14,6 +14,10 @@ main{
             width: 452px;
             height: 460px;
             object-fit: cover;
+            transition: transform .2s;
+        }
+        .main-image:hover{
+            transform: translateY(-2px);
         }
         button{
             background-color: transparent;
@@ -25,6 +29,7 @@ main{
             height: 20px;
             position: absolute;
             z-index: 2;
+            transition: transform .2s;
         }
         .prev{
             top: 495px;
@@ -33,6 +38,16 @@ main{
         .next{
             top: 495px;
             left: 409px;
+        }
+        .prev:hover{
+            transform: translateX(-1px);
+            background-color: #171A20;
+            color: white;
+        }
+        .next:hover{
+            transform: translateX(1px);
+            background-color: #171A20;
+            color: white;
         }
         .thumbnails-slider-container{
             display: flex;
@@ -46,20 +61,24 @@ main{
                 width: max-content;
                 display: flex;
                 gap: 12px;
-                transition: transform 0.3s ease;
+                transition: transform 0.2s ease;
                 img{
                     width: 60px;
                     cursor: pointer;
+                    transition: transform 0.2s;
                 }
                 img:hover{
-                    transform: scale(1.03);
-                    border: 2px solid var(--primary-color);
+                    transform: translateY(-2px);
                 }
             }            
         }
         a{
             color: var(--primary-color);
             font-size: var(--fs-super-small);
+            transition: transform .2s;
+        }
+        a:hover{
+            transform: translateY(-1px);
         }
     }
     .product-discription{
@@ -85,6 +104,7 @@ main{
             display: flex;
             flex-direction: column;
             padding: 14px 0px;
+            transition: transform .2s;
             .accordion-header{
                 display: flex;
                 justify-content: space-between;
@@ -114,6 +134,9 @@ main{
                 }
             }
         }
+        .accordion-item:hover{
+            transform: translateY(-2px);
+        }
         .first{
             border-top: 2px solid var(--border-color);
         }
@@ -135,6 +158,7 @@ main{
             align-items: center;
             gap: 29px;
             .add-to{
+                transition: transform .2s;
                 width: 188px;
                 height: 44px;
                 display: flex;
@@ -166,10 +190,17 @@ main{
                     color: var(--primary-color);
                 }
             }
+            .add-to:hover{
+                transform: translateY(-2px);
+            }
         }
         a{
             color: var(--primary-color);
             font-size: var(--fs-super-small);
+            transition: transform .2s;
+        }
+        a:hover{
+            transform: translateY(-1px);
         }
     }
 
@@ -184,6 +215,11 @@ main{
         padding-bottom: 15px;
         i{
             cursor: pointer;
+            transition: transform .2s;
+            padding: 10px;
+        }
+        i:hover{
+            transform: translateY(-1px);
         }
     }
     .product-info{
@@ -202,6 +238,12 @@ main{
             text-decoration: none;
             width: 156px;
             height: 69px;
+            transition: transform .2s;
+        }
+        a:hover{
+            transform: translateY(-2px);
+            background-color: #171A20;
+            color: white;
         }
     }
 }
