@@ -202,7 +202,7 @@ main{
                                 }
                                 img{
                                     width: 100%;
-                                    height: 220px;
+                                    height: 30vh;
                                     object-fit: cover;
                                     transition: transform .3s;
                                     z-index: 1;
@@ -458,3 +458,26 @@ footer{
         }
     }
 }
+/* @media ( min-width: 1919px ){
+     main{
+        .products-container{
+            .products-container-content{
+                .brand{
+                    .slider-container{
+                        .slider{
+                            .slide{
+                                width: 21vw;
+                                .slide-content{
+                                    .img{
+                                        width: 20vw;
+                                        height: 25vh;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+} */

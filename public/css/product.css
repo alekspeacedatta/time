@@ -1,6 +1,6 @@
 main{
     max-width: 960px;
-    margin: 20px auto;
+    margin: 50px auto;
     display: flex;
     align-items: flex-start;
     gap: 40px;
