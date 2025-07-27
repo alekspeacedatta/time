@@ -4,7 +4,7 @@ document.querySelectorAll(".brand").forEach(brandSection => {
     const slider = brandSection.querySelector(".slider");
     const slides = brandSection.querySelectorAll(".slide");
     const slideWidth = slides[0].offsetWidth + 15;
-    let slideIndex = 0; //243px
+    let slideIndex = 0; 
 
     function showSlide(index) {
         if(index > slides.length - 4){
