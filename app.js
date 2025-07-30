@@ -86,7 +86,6 @@ app.get("/search", async (req, res) => {
         res.status(500).send("Search error");
     }
 });
-
 app.post("/add-to-wishlist/:id", async (req, res) => {
     const product = await Watch.findById(req.params.id);
     if(!product) return res.status(404).send("Product not found");
@@ -152,8 +151,6 @@ app.post("/cart/decrease/:id", (req, res) => {
     }
     res.redirect(req.get('Referrer' || '/'));
 });
-  
-
 app.get("/add", (req, res) => {
     res.render('add');
 })
@@ -173,7 +170,6 @@ app.post("/add-watch", upload.fields([
         res.status(500).send(error.message);
     }
 })
-
 app.get("/edit/:watchId", async (req, res) => {
     try {
         const watch = await Watch.findById(req.params.watchId);
@@ -203,7 +199,6 @@ app.post("/update/:watchId", upload.fields([
         res.status(500).send(error.message);
     }
 })
-
 app.listen(3000, () => {
     console.log("http://localhost:3000");
 })
